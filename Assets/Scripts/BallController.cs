@@ -23,5 +23,6 @@ public class BallController : MonoBehaviour
         //Vector2 launch = ((Vector2)Random.onUnitSphere).normalized * Speed;
         Vector2 launch = Vector2.right * Speed;
         rigidbody2D.velocity = launch;
+        audio.Play();
     }
 }

@@ -8,5 +8,6 @@ public class ScroreController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         GameController.Instance.Score(Player);
+        audio.Play();
     }
 }

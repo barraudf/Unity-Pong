@@ -26,6 +26,8 @@ public class PaddleCollisionManager : MonoBehaviour
             vel *= speed;
 
             col.gameObject.rigidbody2D.velocity = vel;
+
+            audio.Play();
         }
     }
 
