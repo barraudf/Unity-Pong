@@ -11,15 +11,28 @@ public class GameController : Singleton<GameController>
     private int _LeftPlayerScore = 0;
     private int _RightPlayerScore = 0;
 
-    private BallController _BallController;
+    [HideInInspector]
+    public BallController BallController;
+
+    /// <summary>
+    /// Everything (position, speed) will be scalled horizontally based on the screen resolution ratio.
+    /// The ball takes the same time to travel from left to right, be it on a 4/3 screen or on a 16/9 one.
+    /// </summary>
+    public float HorizontalRatioCoefficient
+    {
+        get { return _HorizontalRatioCoefficient; }
+    }
 
     private Text _LeftScoreText;
     private Text _RightScoreText;
+    private float _HorizontalRatioCoefficient;
 
-    void Start()
+    void Awake()
     {
+        _HorizontalRatioCoefficient = Camera.main.aspect / ((float)4 / 3);
+
         GameObject ballGO = (GameObject)GameObject.Find("Ball");
-        _BallController = ballGO.GetComponent<BallController>();
+        BallController = ballGO.GetComponent<BallController>();
 
         GameObject leftScoreGO = (GameObject)GameObject.Find("LeftScore");
         _LeftScoreText = leftScoreGO.GetComponent<Text>();
@@ -40,7 +53,7 @@ public class GameController : Singleton<GameController>
             _RightPlayerScore++;
             _RightScoreText.text = _RightPlayerScore.ToString();
         }
-        _BallController.ResetPositionAndDirection();
+        BallController.ResetPositionAndDirection();
     }
 
     protected GameController() { } // guarantee this will be always a singleton only - can't use the constructor

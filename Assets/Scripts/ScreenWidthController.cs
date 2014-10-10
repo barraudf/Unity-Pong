@@ -19,10 +19,10 @@ public class ScreenWidthController : MonoBehaviour
         newPosition = new Vector3(halfWidth, 0, 0);
         rightBound.transform.position = newPosition;
 
-        newPosition = new Vector3(-halfWidth + 1.5f, 0, 0);
+        newPosition = new Vector3(-halfWidth + 1.5f * GameController.Instance.HorizontalRatioCoefficient, 0, 0);
         leftPaddle.transform.position = newPosition;
 
-        newPosition = new Vector3(halfWidth - 1.5f, 0, 0);
+        newPosition = new Vector3(halfWidth - 1.5f * GameController.Instance.HorizontalRatioCoefficient, 0, 0);
         rightPaddle.transform.position = newPosition;
 	}
 }
